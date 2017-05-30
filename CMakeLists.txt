@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.3)
 
 project(RIKU)
 
-option(RIKU_TEST "Build RIKU test executable" ON)
+option(RIKU_TEST "Build RIKU test executable" OFF)
 
 if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
     set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/../install CACHE PATH "default install path" FORCE)
