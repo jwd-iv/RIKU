@@ -1,4 +1,4 @@
-README                                                                          {#mainpage}
+README
 =========
 A C++14 reflection markup library, originally developed for use in small-scale custom
 game engines to help automate tasks like memory management, script binding, serialization,
@@ -19,16 +19,15 @@ Example
 
 ### Somewhere in a .cpp file...
 
-    rkType(Object,
-    	rkDefaultFactory
-    
+    rkType(Object, rkDefaultFactory
+        rkMember(name)
     	rkMember(children)
     	rkMember(child_count)
     
     	rkMethod(GetChild)
     
     	rkInlineGetSet(
-    		Name,
+    		ObjName,
     		[](Object& obj) -> std::string& {
     			return obj.name;
     		},
@@ -65,49 +64,43 @@ Example
     as_ptr("GetChild", 3); // The same as obj.GetChild(3);
     
     // Custom properties look just like any other
-    as_val["Name"] << std::string("Test");
+    as_val["ObjName"] << std::string("Test");
 
 Other examples of how to use riku::function, riku::array as well as the above can
 be found in `/test/main.cpp`, included with RIKU source code.
 
 
-Using RIKU in Your Project
-===========================
-For now, the binary files provided are for Windows 32 and 64 bit only. Extract riku.zip
-and add `riku/include` and `riku/lib` to the appropriate search paths in your project,
-and be sure the project is set to link `riku` or `riku64`.
-
-
 Building RIKU
 =============
-1. Download and extract riku_src.zip
-2. From the extracted directory, run one of the following to build the project files:
-  * Windows - `premake vs2015`
-  * Linux - `premake gmake`
-  * Mac - `premake xcode`
-3. Open `/build/riku.*` (whichever extension your IDE uses) and build the project as normal.
+short version: Build it with CMake.
+
+
+Using RIKU in Your Project
+===========================
+short version: either link it statically or connect it to your CMake project with ExternalProject_Add().
 
 
 Testing RIKU
 ============
-A pre-compiled unit test is included in the binary distribution under `/bin`; the test code
-is also included in riku_src.zip and will build with the rest of the project.
+short version: run the riku_test target of the CMake build, the default target if RIKU_TEST is left on.
 
 
 To-do List
 ==================
+* Replace `riku::variant` with `riku::var<T>` and add `typedef var<variant_type> variant`
 * Remove templated variant constructors, replace with `::create<T>` and etc.
-* define registrar constructor as taking a templated functor for defining the type
-* Compile-time type and property name hashing for faster lookup
+* Transition registrar to using functor_constructors
+* Compile-time type and property name string hashing for faster lookup
+* More robust+readable unit tests
 * Much more comprehensive documentation
 * Type conversion (especially for numeric types)
 * riku::command for runtime function argument binding and delegated function calls
-* rkInlineGet()
+* `#rkInlineGet()`
 * Cross-platform testing
-* enumerations
-* riku::factory move functions and full variant r-value forwarding
+* enum reflection
+* riku::factory move functions and full variant r-value forwarding for memory efficiency
 * custom factory macros - `rkConstructor(...)`, `rkMoveConstructor(...)`, `rkCustomAssign(func)`, etc.
-* riku::array_property and riku::array_type
-* riku::map_var, riku::map_property, and riku::map_type
-* reflection of reference and pointer types, both const and non-const
 * Shared library implementation
+* riku::array_property and/or riku::array_type
+* riku::map_var, riku::map_property, and/or riku::map_type
+* complete reflection of reference and pointer types, both const and non-const

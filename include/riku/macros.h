@@ -12,7 +12,8 @@
     @param Type
       Tye type this macro is being added to. */
 #define rkMetaHook(Type) \
-  public: virtual riku::typeinfo meta() const {return riku::get<Type>();}
+  public: template<typename T> friend class riku::internal::registrar; \
+  virtual riku::typeinfo meta() const {return riku::get<Type>();}
 
 #ifndef RIKU_SHARED
 #  define rkExportLib(Name) void* __rklib_##Name (void*) {return NULL;}
@@ -43,6 +44,20 @@
     get()->n = #Name; get()->s = sizeof(Name); Definition;     \
     riku::library::modify()->types[#Name] = get();             \
   } riku::internal::registrar<Name> GENERATE_NAME();
+
+#define rkTemplatedType(Name, Definition)                                                                               \
+  template<typename... Targs> class ::riku::internal::registrar< Name<Targs...> >                                       \
+  { public: typedef Name<Targs...> my_type; static template_instance* get()                                             \
+    { static template_type* base_template = NULL; static template_instance* instance = NULL;                            \
+      if (base_template == NULL) { base_template = dynamic_cast<template_type*>(const_cast<type*>(riku::find(#Name)));  \
+        if (base_template == NULL) { base_template = new template_type; base_template->n = #Name; base_template->s = 0; \
+          riku::library::modify()->types[base_template->n.c_str()] = base_template; } }                                 \
+      if (instance == NULL) { instance = new template_instance; instance->s = sizeof(Name<Targs...>);                   \
+        instance->base = base_template; instance->params = metaprog::typelist<Targs...>::create();                      \
+        instance->n = base_template->name() + "<"; for (auto const& t : instance->params) {                             \
+          instance->n += t->name() + ", "; } instance->n.pop_back(); instance->n.pop_back();                            \
+        instance->n += ">"; Definition; base_template->instantiations.push_back(instance);                              \
+      } return instance; } };
 
 //! Adds a default new and delete implementation to the type's factory.
 #define rkConstructable                                                                \
@@ -82,8 +97,9 @@
 
 /*! @brief Adds a member property to the type.
     @param Name The name of the member as it is in the type definition. */
-#define rkMember(Name) addmember( \
-  riku::get<decltype(my_type::Name)>(), #Name, offsetof(my_type, Name) );
+#define rkMember(Name) { member* newmem = new member; newmem->p = get(); \
+  newmem->t = riku::get<decltype(my_type::Name)>();                      \
+  newmem->offset = offsetof(my_type, Name); get()->props[#Name] = newmem; }
 
 /*! @brief Adds a custom Get()/Set() property to the type. See main.cpp for example usage.
     @param Name
@@ -101,8 +117,9 @@
       Like getlambda, if this is a nonmember function it must take the this pointer either
       as the correct type or as a variant. The last parameter of the set function is how the 
       value to assign is passed in, again either as the correct type or as a variant. */
-#define rkInlineGetSet(Name, getlambda, setlambda) addproperty( \
-  #Name, new riku::function(getlambda), new riku::function(setlambda) );
+#define rkInlineGetSet(Name, getlambda, setlambda) { get_set* newmem = new get_set; \
+  newmem->p = get(); newmem->g = new riku::function(getlambda);                     \
+  newmem->s = new riku::function(setlambda); get()->props[#Name] = newmem; }
 
 /*! @brief Adds a Get()/Set() property of only member functions to the reflected type.
     @param Name

@@ -37,6 +37,19 @@ struct Outer
   Base b;
 };
 
+template<typename... Targs> struct ArgStack;
+template<typename T> struct ArgStack<T> {
+  T val;
+  bool next;
+};
+template<typename T, typename... Targs>
+struct ArgStack<T, Targs...> {
+  T val;
+  typename ArgStack<Targs...> next;
+};
+
+rkTemplatedType(ArgStack, rkDefaultFactory rkMember(val) rkMember(next))
+
 rkType(Base,
   rkDefaultFactory
   rkMember(i)
@@ -322,6 +335,43 @@ bool unittest_ptrmeta()
   return true;
 }
 
+bool unittest_templatemeta()
+{
+  fail_if(riku::get<riku::var<riku::variant_type> >()
+       != riku::get<riku::var<riku::variant_type> >());
+
+  auto typelisttype = dynamic_cast<riku::template_instance const*>(riku::get<riku::typelist>());
+  auto vecvartype = dynamic_cast<riku::template_instance const*>(riku::get< std::vector<riku::variant> >());
+  fail_if(typelisttype == NULL);
+  fail_if(vecvartype == NULL);
+  fail_if(typelisttype->base != vecvartype->base);
+  fail_if(typelisttype->params.size() != 2 || vecvartype->params.size() != 2);
+
+  ArgStack<int, bool, riku::typelist> as3;
+  ArgStack<std::string, float, long long, Base> as4;
+  auto as3type = dynamic_cast<riku::template_instance const*>(riku::inspect(as3));
+  auto as4type = dynamic_cast<riku::template_instance const*>(riku::inspect(as4));
+
+  fail_if(as3type == NULL);
+  fail_if(as4type == NULL);
+  fail_if(as3type->base != as4type->base);
+  fail_if(as3type->params.size() != 3 || as4type->params.size() != 4);
+
+  fail_if(as3type->params[0] != riku::get<int>()
+       || as3type->params[1] != riku::get<bool>()
+       || as3type->params[2] != riku::get<riku::typelist>());
+
+  fail_if(as4type->params[0] != riku::get<std::string>()
+       || as4type->params[1] != riku::get<float>()
+       || as4type->params[2] != riku::get<long long>()
+       || as4type->params[3] != riku::get<Base>());
+
+  auto endval3 = riku::ptr(as3)["next"]["next"]["val"];
+  fail_if(endval3.type() != riku::get<riku::typelist>());
+
+  return true;
+}
+
 int main(void)
 {
 #undef fail_if
@@ -349,6 +399,8 @@ int main(void)
   fail_if_not(unittest_ptrmeta<std::string>());
   fail_if_not(unittest_ptrmeta<int**>());
   fail_if_not(unittest_ptrmeta<char*******>());
+
+  fail_if_not(unittest_templatemeta());
 
   system("pause");
 

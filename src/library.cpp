@@ -13,7 +13,7 @@ template<> riku::internal::registrar<void>::registrar()
   get()->n = "void";
   riku::library::modify()->types["void"] = get();
 }
-riku::internal::registrar<void> GENERATE_NAME();
+riku::internal::registrar<void> void_register;
 
 rkPrimitive(bool)
 rkPrimitive(char)
@@ -33,9 +33,11 @@ rkNumPrimitive(long double)
 
 rkType(riku::nulltype, )
 rkType(riku::type, )
-rkType(riku::pointer_type,   rkParent(type) rkDefaultFactory)
-rkType(riku::primitive_type, rkParent(type))
-rkType(riku::generic_type,   rkParent(primitive_type) rkDefaultFactory)
+rkType(riku::pointer_type,      rkParent(type)           rkDefaultFactory)
+rkType(riku::primitive_type,    rkParent(type))
+rkType(riku::generic_type,      rkParent(primitive_type) rkDefaultFactory)
+rkType(riku::template_type,     rkParent(primitive_type) rkDefaultFactory)
+rkType(riku::template_instance, rkParent(generic_type)   rkDefaultFactory)
 
 rkType(riku::factory, rkDefaultFactory)
 
