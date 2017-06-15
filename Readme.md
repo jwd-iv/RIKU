@@ -82,14 +82,14 @@ short version: either link it statically or connect it to your CMake project wit
 
 Testing RIKU
 ============
-short version: run the riku_test target of the CMake build, the default target if RIKU_TEST is left on.
+short version: run the riku_test target of the CMake build, which is the default if RIKU_TEST is left on.
 
 
 To-do List
 ==================
 * Replace `riku::variant` with `riku::var<T>` and add `typedef var<variant_type> variant`
 * Remove templated variant constructors, replace with `::create<T>` and etc.
-* Transition registrar to using functor_constructors
+* Transition registrar and rkLibrary() to using functor_constructors
 * Compile-time type and property name string hashing for faster lookup
 * More robust+readable unit tests
 * Much more comprehensive documentation

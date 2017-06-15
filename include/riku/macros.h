@@ -15,6 +15,8 @@
   public: template<typename T> friend class riku::internal::registrar; \
   virtual riku::typeinfo meta() const {return riku::get<Type>();}
 
+#define rkMetaHandle(Type) rkMetaHook(Type); typedef riku::var<Type> handle;
+
 #ifndef RIKU_SHARED
 #  define rkExportLib(Name) void* __rklib_##Name (void*) {return NULL;}
 #else
