@@ -9,16 +9,14 @@ set_target_properties(RIKU PROPERTIES
     DEBUG_POSTFIX -d
     FOLDER RIKU
 )
-set(install_libs ${install_libs} RIKU)
 
 install(
-    DIRECTORY ../include
-    DESTINATION .
-    FILES_MATCHING PATTERN "**.h*"
+    DIRECTORY ${RIKU_SOURCE_DIR}/include
+    DESTINATION include
 )
 install(
-    TARGETS ${install_libs}
-    LIBRARY DESTINATION ${libdir}
-    ARCHIVE DESTINATION ${libdir}
+    TARGETS RIKU
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
     RUNTIME DESTINATION bin
 )

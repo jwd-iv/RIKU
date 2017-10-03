@@ -9,4 +9,4 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
     set_property(DIRECTORY ${CMAKE_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT riku_test)
 endif()
 
-#add_test(NAME riku_unittest COMMAND riku_test)
+add_test(NAME riku_unittest COMMAND riku_test)
