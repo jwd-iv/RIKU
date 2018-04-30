@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+  <Type Name="riku::type">
+    <Expand>
+      <Item Name="Children">child_types</Item>
+    </Expand>
+  </Type>
+  
+  <Type Name="riku::primitive_type">
+    <DisplayString>{n}</DisplayString>
+    <Expand>
+      <ExpandedItem>*((riku::type*)this),nd</ExpandedItem>
+      <Item Name="Size">s</Item>
+      <Item Name="Pointer Type" Condition="ptr_type.points_to != 0">ptr_type</Item>
+    </Expand>
+  </Type>
+
+  <Type Name="riku::generic_type">
+    <DisplayString>{n}</DisplayString>
+    <Expand>
+      <Item Name="Properties">props</Item>
+      <Item Name="Methods">funcs</Item>
+      <Item Name="Parents">ps</Item>
+      <ExpandedItem>*((riku::primitive_type*)this),nd</ExpandedItem>
+    </Expand>
+  </Type>
+
+  <Type Name="riku::pointer_type">
+    <DisplayString Condition="points_to != 0">{*points_to}*</DisplayString>
+    <Expand>
+      <Item Name="Points to" Condition="points_to != 0">points_to</Item>
+    </Expand>
+  </Type>
+
+  <Type Name="riku::template_instance">
+    <DisplayString>{n}</DisplayString>
+    <Expand>
+      <Item Name="[Base]">base->n</Item>
+      <ArrayItems>
+        <Size>params.size()</Size>
+        <ValuePointer>params._Mypair._Myval2._Myfirst</ValuePointer>
+      </ArrayItems>
+      <ExpandedItem>*((riku::generic_type*)this),nd</ExpandedItem>
+    </Expand>
+  </Type>
+
+  <Type Name="riku::member">
+    <DisplayString></DisplayString>
+  </Type>
+
+  <Type Name="riku::get_set">
+    <DisplayString></DisplayString>
+  </Type>
+  
+  <Type Name="riku::variant">
+    <DisplayString Condition="(void*)refs == (void*)p.raw">{*(variant_type*)p.raw}</DisplayString>
+    <DisplayString Condition="(void*)refs != 0">{*p.impl}</DisplayString>
+    <DisplayString>empty</DisplayString>
+    <Expand>
+      <ExpandedItem Condition="refs != 0 &amp; (void*)refs == (void*)p.raw">*(variant_type*)p.raw</ExpandedItem>
+      <Item Condition="refs != 0 &amp; (void*)refs == (void*)p.raw" Name="[Container]">*(variant_type*)p.raw</Item>
+      <ExpandedItem Condition="refs != 0 &amp; (void*)refs != (void*)p.raw">*p.impl</ExpandedItem>
+      <Item Condition="refs != 0 &amp; (void*)refs != (void*)p.raw" Name="[Container]">*p.impl</Item>
+      <Item Condition="refs != 0 &amp; (void*)refs != (void*)p.raw" Name="[References]">*refs</Item>
+    </Expand>
+  </Type>
+
+  <Type Name="riku::val">
+    <DisplayString Condition="(primitive_type*)contains != 0 &amp; ((primitive_type*)contains)->s &lt;= sizeof(long long unsigned)">val (in-place) {((primitive_type*)contains)->n}</DisplayString>
+    <DisplayString Condition="(primitive_type*)contains != 0 &amp; ((primitive_type*)contains)->s &gt; sizeof(long long unsigned)">val {(void*) d.p.v} {((primitive_type*)contains)->n} [{*d.p.refs} refs]</DisplayString>
+    <DisplayString>val (empty)</DisplayString>
+    <Expand>
+      <Item Name="Type">*contains</Item>
+      <Item Condition="(primitive_type*)contains != 0 &amp; ((primitive_type*)contains)->s &lt;= sizeof(long long unsigned)" Name="Address">(void*) d.raw</Item>
+      <Item Condition="(primitive_type*)contains != 0 &amp; ((primitive_type*)contains)->s &gt; sizeof(long long unsigned)" Name="Address">(void*) d.p.v</Item>
+      <Item Condition="(primitive_type*)contains != 0 &amp; ((primitive_type*)contains)->s &gt; sizeof(long long unsigned)" Name="Refs">d.p.v</Item>
+    </Expand>
+  </Type>
+
+  <Type Name="riku::ptr">
+    <DisplayString Condition="(contains != 0)">ptr {d.ptr} {((primitive_type*)contains)->n}</DisplayString>
+    <DisplayString>ptr (empty)</DisplayString>
+    <Expand>
+      <Item Condition="contains != 0" Name="Type">*contains</Item>
+      <Item Condition="d.ptr != 0" Name="Address">d.cptr</Item>
+      <Item Name="const">c</Item>
+    </Expand>
+  </Type>
+
+  <Type Name="riku::array">
+    <DisplayString>array {vec}</DisplayString>
+    <Expand>
+      <ArrayItems>
+        <Size>vec.size()</Size>
+        <ValuePointer>vec._Mypair._Myval2._Myfirst</ValuePointer>
+      </ArrayItems>
+    </Expand>
+  </Type>
+
+  <Type Name="riku::function">
+    <DisplayString></DisplayString>
+  </Type>
+</AutoVisualizer>

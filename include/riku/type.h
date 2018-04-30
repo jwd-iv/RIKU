@@ -24,6 +24,8 @@ namespace riku
 
   private:
     template<typename T> friend class riku::internal::registrar;
+    friend class generic_type;
+
     typelist child_types;
   };
 
@@ -112,10 +114,4 @@ namespace riku
     template_type* base;
     typelist params;
   };
-
-  /* ???
-  struct container_type : public type {};
-  struct array_type : public container_type {};
-  struct map_type : public container_type {};
-  */
 }

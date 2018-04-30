@@ -243,6 +243,7 @@ namespace riku
   {
     return n;
   }
+
   typeinfo template_instance::meta() const
   {
     return typeinfo();
