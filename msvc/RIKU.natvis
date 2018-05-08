@@ -122,8 +122,78 @@
   </Type>
 
   <Type Name="riku::function">
-    <DisplayString Condition="ret_type != 0 &amp; obj_type != 0 &amp; arg_count &gt; 0 &amp; is_const != 0">	    {((riku::primitive_type*)ret_type)->n} {((riku::primitive_type*)obj_type)->n}::(*)( {arg_count} ) const    </DisplayString>    <DisplayString Condition="ret_type != 0 &amp; obj_type != 0 &amp; arg_count &gt; 0 &amp; is_const == 0">	    {((riku::primitive_type*)ret_type)->n} {((riku::primitive_type*)obj_type)->n}::(*)( {arg_count} )    </DisplayString>    <DisplayString Condition="ret_type != 0 &amp; obj_type != 0 &amp; arg_count == 0 &amp; is_const != 0">
-	    {((riku::primitive_type*)ret_type)->n} {((riku::primitive_type*)obj_type)->n}::(*)() const    </DisplayString>    <DisplayString Condition="ret_type != 0 &amp; obj_type != 0 &amp; arg_count == 0 &amp; is_const == 0">	    {((riku::primitive_type*)ret_type)->n} {((riku::primitive_type*)obj_type)->n}::(*)()    </DisplayString>    <DisplayString Condition="ret_type != 0 &amp; obj_type == 0 &amp; arg_count &gt; 0 &amp; is_const != 0">	    {((riku::primitive_type*)ret_type)->n} (*)( {arg_count} ) const    </DisplayString>    <DisplayString Condition="ret_type != 0 &amp; obj_type == 0 &amp; arg_count &gt; 0 &amp; is_const == 0">	    {((riku::primitive_type*)ret_type)->n} (*)( {arg_count} )    </DisplayString>    <DisplayString Condition="ret_type != 0 &amp; obj_type == 0 &amp; arg_count == 0 &amp; is_const != 0">	    {((riku::primitive_type*)ret_type)->n} (*)() const    </DisplayString>    <DisplayString Condition="ret_type != 0 &amp; obj_type == 0 &amp; arg_count == 0 &amp; is_const == 0">	    {((riku::primitive_type*)ret_type)->n} (*)()    </DisplayString>    <DisplayString Condition="ret_type != 0 &amp; obj_type == 0 &amp; arg_count &gt; 0 &amp; is_const != 0 &amp; is_lambda != 0">	    {((riku::primitive_type*)ret_type)->n} [](*)( {arg_count} ) const    </DisplayString>    <DisplayString Condition="ret_type != 0 &amp; obj_type == 0 &amp; arg_count &gt; 0 &amp; is_const == 0 &amp; is_lambda != 0">	    {((riku::primitive_type*)ret_type)->n} [](*)( {arg_count} )    </DisplayString>    <DisplayString Condition="ret_type != 0 &amp; obj_type == 0 &amp; arg_count == 0 &amp; is_const != 0 &amp; is_lambda != 0">	    {((riku::primitive_type*)ret_type)->n} [](*)() const    </DisplayString>    <DisplayString Condition="ret_type != 0 &amp; obj_type == 0 &amp; arg_count == 0 &amp; is_const == 0 &amp; is_lambda != 0">	    {((riku::primitive_type*)ret_type)->n} [](*)()    </DisplayString>    <DisplayString Condition="ret_type == 0 &amp; obj_type != 0 &amp; arg_count &gt; 0 &amp; is_const != 0">	    void {((riku::primitive_type*)obj_type)->n}::(*)( {arg_count} ) const    </DisplayString>    <DisplayString Condition="ret_type == 0 &amp; obj_type != 0 &amp; arg_count &gt; 0 &amp; is_const == 0">	    void {((riku::primitive_type*)obj_type)->n}::(*)( {arg_count} )    </DisplayString>    <DisplayString Condition="ret_type == 0 &amp; obj_type != 0 &amp; arg_count == 0 &amp; is_const != 0">	    void {((riku::primitive_type*)obj_type)->n}::(*)() const    </DisplayString>    <DisplayString Condition="ret_type == 0 &amp; obj_type != 0 &amp; arg_count == 0 &amp; is_const == 0">	    void {((riku::primitive_type*)obj_type)->n}::(*)()    </DisplayString>    <DisplayString Condition="ret_type == 0 &amp; obj_type == 0 &amp; arg_count &gt; 0 &amp; is_const != 0">	    void (*)( {arg_count} ) const    </DisplayString>    <DisplayString Condition="ret_type == 0 &amp; obj_type == 0 &amp; arg_count &gt; 0 &amp; is_const == 0">	    void (*)( {arg_count} )    </DisplayString>    <DisplayString Condition="ret_type == 0 &amp; obj_type == 0 &amp; arg_count == 0 &amp; is_const != 0">	    void (*)() const    </DisplayString>    <DisplayString Condition="ret_type == 0 &amp; obj_type == 0 &amp; arg_count == 0 &amp; is_const == 0">	    void (*)()    </DisplayString>    <DisplayString Condition="ret_type == 0 &amp; obj_type == 0 &amp; arg_count &gt; 0 &amp; is_const != 0 &amp; is_lambda != 0">	    void [](*)( {arg_count} ) const    </DisplayString>    <DisplayString Condition="ret_type == 0 &amp; obj_type == 0 &amp; arg_count &gt; 0 &amp; is_const == 0 &amp; is_lambda != 0">	    void [](*)( {arg_count} )    </DisplayString>    <DisplayString Condition="ret_type == 0 &amp; obj_type == 0 &amp; arg_count == 0 &amp; is_const != 0 &amp; is_lambda != 0">	    void [](*)() const    </DisplayString>    <DisplayString Condition="ret_type == 0 &amp; obj_type == 0 &amp; arg_count == 0 &amp; is_const == 0 &amp; is_lambda != 0">	    void [](*)()    </DisplayString>
+    <DisplayString Condition="ret_type != 0 &amp; obj_type != 0 &amp; arg_count &gt; 0 &amp; is_const != 0">
+	    {((riku::primitive_type*)ret_type)->n} {((riku::primitive_type*)obj_type)->n}::(*)( {arg_count} ) const
+    </DisplayString>
+    <DisplayString Condition="ret_type != 0 &amp; obj_type != 0 &amp; arg_count &gt; 0 &amp; is_const == 0">
+	    {((riku::primitive_type*)ret_type)->n} {((riku::primitive_type*)obj_type)->n}::(*)( {arg_count} )
+    </DisplayString>
+    <DisplayString Condition="ret_type != 0 &amp; obj_type != 0 &amp; arg_count == 0 &amp; is_const != 0">
+	    {((riku::primitive_type*)ret_type)->n} {((riku::primitive_type*)obj_type)->n}::(*)( ) const
+    </DisplayString>
+    <DisplayString Condition="ret_type != 0 &amp; obj_type != 0 &amp; arg_count == 0 &amp; is_const == 0">
+	    {((riku::primitive_type*)ret_type)->n} {((riku::primitive_type*)obj_type)->n}::(*)( )
+    </DisplayString>
+    <DisplayString Condition="ret_type != 0 &amp; obj_type == 0 &amp; arg_count &gt; 0 &amp; is_const != 0">
+	    {((riku::primitive_type*)ret_type)->n} (*)( {arg_count} ) const
+    </DisplayString>
+    <DisplayString Condition="ret_type != 0 &amp; obj_type == 0 &amp; arg_count &gt; 0 &amp; is_const == 0">
+	    {((riku::primitive_type*)ret_type)->n} (*)( {arg_count} )
+    </DisplayString>
+    <DisplayString Condition="ret_type != 0 &amp; obj_type == 0 &amp; arg_count == 0 &amp; is_const != 0">
+	    {((riku::primitive_type*)ret_type)->n} (*)( ) const
+    </DisplayString>
+    <DisplayString Condition="ret_type != 0 &amp; obj_type == 0 &amp; arg_count == 0 &amp; is_const == 0">
+	    {((riku::primitive_type*)ret_type)->n} (*)( )
+    </DisplayString>
+    <DisplayString Condition="ret_type != 0 &amp; obj_type == 0 &amp; arg_count &gt; 0 &amp; is_const != 0 &amp; is_lambda != 0">
+	    {((riku::primitive_type*)ret_type)->n} [](*)( {arg_count} ) const
+    </DisplayString>
+    <DisplayString Condition="ret_type != 0 &amp; obj_type == 0 &amp; arg_count &gt; 0 &amp; is_const == 0 &amp; is_lambda != 0">
+	    {((riku::primitive_type*)ret_type)->n} [](*)( {arg_count} )
+    </DisplayString>
+    <DisplayString Condition="ret_type != 0 &amp; obj_type == 0 &amp; arg_count == 0 &amp; is_const != 0 &amp; is_lambda != 0">
+	    {((riku::primitive_type*)ret_type)->n} [](*)( ) const
+    </DisplayString>
+    <DisplayString Condition="ret_type != 0 &amp; obj_type == 0 &amp; arg_count == 0 &amp; is_const == 0 &amp; is_lambda != 0">
+	    {((riku::primitive_type*)ret_type)->n} [](*)( )
+    </DisplayString>
+    <DisplayString Condition="ret_type == 0 &amp; obj_type != 0 &amp; arg_count &gt; 0 &amp; is_const != 0">
+	    void {((riku::primitive_type*)obj_type)->n}::(*)( {arg_count} ) const
+    </DisplayString>
+    <DisplayString Condition="ret_type == 0 &amp; obj_type != 0 &amp; arg_count &gt; 0 &amp; is_const == 0">
+	    void {((riku::primitive_type*)obj_type)->n}::(*)( {arg_count} )
+    </DisplayString>
+    <DisplayString Condition="ret_type == 0 &amp; obj_type != 0 &amp; arg_count == 0 &amp; is_const != 0">
+	    void {((riku::primitive_type*)obj_type)->n}::(*)( ) const
+    </DisplayString>
+    <DisplayString Condition="ret_type == 0 &amp; obj_type != 0 &amp; arg_count == 0 &amp; is_const == 0">
+	    void {((riku::primitive_type*)obj_type)->n}::(*)( )
+    </DisplayString>
+    <DisplayString Condition="ret_type == 0 &amp; obj_type == 0 &amp; arg_count &gt; 0 &amp; is_const != 0">
+	    void (*)( {arg_count} ) const
+    </DisplayString>
+    <DisplayString Condition="ret_type == 0 &amp; obj_type == 0 &amp; arg_count &gt; 0 &amp; is_const == 0">
+	    void (*)( {arg_count} )
+    </DisplayString>
+    <DisplayString Condition="ret_type == 0 &amp; obj_type == 0 &amp; arg_count == 0 &amp; is_const != 0">
+	    void (*)( ) const
+    </DisplayString>
+    <DisplayString Condition="ret_type == 0 &amp; obj_type == 0 &amp; arg_count == 0 &amp; is_const == 0">
+	    void (*)( )
+    </DisplayString>
+    <DisplayString Condition="ret_type == 0 &amp; obj_type == 0 &amp; arg_count &gt; 0 &amp; is_const != 0 &amp; is_lambda != 0">
+	    void [](*)( {arg_count} ) const
+    </DisplayString>
+    <DisplayString Condition="ret_type == 0 &amp; obj_type == 0 &amp; arg_count &gt; 0 &amp; is_const == 0 &amp; is_lambda != 0">
+	    void [](*)( {arg_count} )
+    </DisplayString>
+    <DisplayString Condition="ret_type == 0 &amp; obj_type == 0 &amp; arg_count == 0 &amp; is_const != 0 &amp; is_lambda != 0">
+	    void [](*)( ) const
+    </DisplayString>
+    <DisplayString Condition="ret_type == 0 &amp; obj_type == 0 &amp; arg_count == 0 &amp; is_const == 0 &amp; is_lambda != 0">
+	    void [](*)( )
+    </DisplayString>
     <Expand>
       <Item Name="Returns" Condition="ret_type != 0">*((riku::primitive_type*)ret_type)</Item>
       <Item Name="Object" Condition="obj_type != 0">*((riku::primitive_type*)obj_type)</Item>
@@ -137,6 +207,11 @@
     </Expand>
   </Type>
 
-  <Type Name="riku::function::arg">    <DisplayString Condition="type != 0 &amp; is_const != 0 &amp; is_ref != 0">{((riku::primitive_type*)type)->n} const&amp;</DisplayString>    <DisplayString Condition="type != 0 &amp; is_const != 0 &amp; is_ref == 0">{((riku::primitive_type*)type)->n} const</DisplayString>    <DisplayString Condition="type != 0 &amp; is_const == 0 &amp; is_ref != 0">{((riku::primitive_type*)type)->n} &amp;</DisplayString>    <DisplayString Condition="type != 0 &amp; is_const == 0 &amp; is_ref == 0">{((riku::primitive_type*)type)->n}</DisplayString>    <DisplayString>null</DisplayString>
+  <Type Name="riku::function::arg">
+    <DisplayString Condition="type != 0 &amp; is_const != 0 &amp; is_ref != 0">{((riku::primitive_type*)type)->n} const&amp;</DisplayString>
+    <DisplayString Condition="type != 0 &amp; is_const != 0 &amp; is_ref == 0">{((riku::primitive_type*)type)->n} const</DisplayString>
+    <DisplayString Condition="type != 0 &amp; is_const == 0 &amp; is_ref != 0">{((riku::primitive_type*)type)->n} &amp;</DisplayString>
+    <DisplayString Condition="type != 0 &amp; is_const == 0 &amp; is_ref == 0">{((riku::primitive_type*)type)->n}</DisplayString>
+    <DisplayString>null</DisplayString>
   </Type>
 </AutoVisualizer>
