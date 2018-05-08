@@ -44,11 +44,11 @@ namespace riku
     typeinfo obj_type = NULL, ret_type = NULL;
 
   private:
-    internal::init_func ini = NULL;
+    internal::init_func  ini = NULL;
     internal::check_func chk = NULL;
-    internal::call_func cal = NULL;
+    internal::call_func  cal = NULL;
     internal::clean_func clr = NULL;
-    internal::func_ptr* ptr = NULL;
+    internal::func_ptr*  ptr = NULL;
 
     variant internal_invoke(void* obj, array_var& args) const;
   };
