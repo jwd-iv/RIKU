@@ -75,6 +75,14 @@
       <Item Name="Set()" Condition="g != 0">*s</Item>
     </Expand>
   </Type>
+
+  <Type Name="riku::var&lt;*&gt;">
+    <DisplayString Condition="_pDebug != 0">{*_pDebug} [{*((riku::variant*)this),nd}]</DisplayString>
+    <Expand>
+      <Item Name="Value" Condition="_pDebug != 0">_pDebug</Item>
+      <ExpandedItem>*((riku::variant*)this),nd</ExpandedItem>
+    </Expand>
+  </Type>
   
   <Type Name="riku::variant">
     <DisplayString Condition="(void*)refs == (void*)p.raw">{*(variant_type*)p.raw}</DisplayString>

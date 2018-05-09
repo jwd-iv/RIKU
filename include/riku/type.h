@@ -24,7 +24,7 @@ namespace riku
 
   private:
     template<typename T> friend class riku::internal::registrar;
-    friend class generic_type;
+    friend struct generic_type;
 
     typelist child_types;
   };

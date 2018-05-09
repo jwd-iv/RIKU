@@ -204,5 +204,10 @@ namespace riku
     T const& operator*() const;
     T* operator->();
     T const* operator->() const;
+
+#ifdef _DEBUG
+  private:
+	T const* _pDebug = NULL;
+#endif
   };
 }
