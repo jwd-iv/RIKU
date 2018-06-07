@@ -61,7 +61,7 @@ namespace riku
   
   variant function::invoke(variant_type& obj, array_var& args) const
   {
-    if (args.length() != arg_count  // wrong number of arguments
+    if (args.length() < arg_count  // wrong number of arguments
       || cal == NULL || chk == NULL // this isn't a valid func pointer
       || (obj_type != NULL && (obj.type() == NULL || !obj.type()->has_parent(obj_type))))
       return variant();             // or this function needs an object and was passed none
@@ -71,12 +71,36 @@ namespace riku
 
   variant function::invoke(variant_type const& obj, array_var& args) const
   {
-    if (args.length() != arg_count || !is_const //additional fail if this is non-const
+    if (args.length() < arg_count
       || cal == NULL || chk == NULL
       || (obj_type != NULL && (obj.type() == NULL || !obj.type()->has_parent(obj_type))))
       return variant();
 
+    if (obj_type != NULL && !is_const) //additional fail if this is non-const)
+      return variant();
+
     return internal_invoke(const_cast<void*>(obj.data()), args);
+  }
+
+  variant function::invoke(array_var& args) const
+  {
+    if (obj_type != NULL)
+    {
+      //pull first arg off and pass as obj
+      array lastArgs;
+
+      for (int i = 1; i < args.length(); ++i)
+        lastArgs.push_back(args[i]);
+
+      //TODO: make invoke(args[0], array(++args.begin())) work
+
+      return invoke(args[0], lastArgs);
+    }
+    else
+    {
+      //call with no obj
+      return invoke(variant(), args);
+    }
   }
 
   variant function::internal_invoke(void* obj, array_var& args) const
@@ -111,9 +135,14 @@ namespace riku
           fix_buffer[i] = args_ptr[i];
           args_ptr[i] = fix_buffer + i;
         }
-        else if (types[i]->has_parent(arg_list[i].type))
+        else if (types[i] != arg_list[i].type && types[i]->has_parent(arg_list[i].type))
         { // just need to adjust the type pointer because the arg is of the correct type
           types[i] = arg_list[i].type;
+        }
+        else if (arg_list[i].type == get<variant>())
+        {
+          args_ptr[i] = &args[i];
+          types[i] = get<variant>();
         }
       }
 

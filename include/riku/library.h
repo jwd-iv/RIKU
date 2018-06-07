@@ -6,9 +6,9 @@ namespace riku
 
     typeinfo find(char const* name) const;
 
-  private:
     std::unordered_map<std::string, typeinfo> types;
 
+  private:
     static RIKU_API library* modify();
     template<typename T> friend class internal::registrar;
   };
@@ -31,6 +31,16 @@ namespace riku
   template<> inline typeinfo get<void>()
   {
     return NULL;
+  }
+
+  template<> inline typeinfo get<void*>()
+  {
+    return library::get()->find("void*");
+  }
+
+  template<> inline typeinfo get<void const*>()
+  {
+    return library::get()->find("void const*");
   }
 }
 

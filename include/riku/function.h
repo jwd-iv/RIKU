@@ -27,6 +27,7 @@ namespace riku
     template<typename... Targs>
     variant operator()(variant_type const& obj, Targs&&... args) const;
 
+    virtual variant invoke(array_var& args) const;
     virtual variant invoke(variant_type& obj, array_var& args) const;
     virtual variant invoke(variant_type const& obj, array_var& args) const;
 

@@ -60,8 +60,10 @@ namespace riku
   struct variant;
   struct array;
   template<typename T> struct var;
+  typedef struct var<function> func_ptr;
 
   typedef unsigned char byte;
+  typedef char const* type_id;
   typedef std::string string;   //!< Temporary measure, once compile-time string hashing is working RIKU will need a string refactor
   typedef std::vector<typeinfo> typelist;
 
@@ -86,5 +88,7 @@ namespace riku
 #include "riku\factory_inl.hpp"
 #include "riku\array_inl.hpp"
 #include "riku\function_inl.hpp"
+
+namespace rk = riku;
 
 //! @example test/main.cpp
