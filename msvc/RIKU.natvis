@@ -78,6 +78,7 @@
 
   <Type Name="riku::var&lt;*&gt;">
     <DisplayString Condition="_pDebug != 0">{*_pDebug} [{*((riku::variant*)this),nd}]</DisplayString>
+    <DisplayString>(empty)</DisplayString>
     <Expand>
       <Item Name="Value" Condition="_pDebug != 0">_pDebug</Item>
       <ExpandedItem>*((riku::variant*)this),nd</ExpandedItem>

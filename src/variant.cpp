@@ -11,6 +11,13 @@ namespace riku
       {
         return type()->mem_funcs.assign(data(), const_cast<void*>(rhs.data())) != NULL;
       }
+      else if(type()->has_parent(get<variant>()))
+      {
+        if (rhs.meta()->has_parent(get<variant_type>()))
+          return as<variant>().operator=(rhs).data() != NULL;
+        else
+          return as<variant>().assign(rhs);
+      }
       else
       {
         bool anything_happened = false;

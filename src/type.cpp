@@ -76,7 +76,7 @@ namespace riku
       return ptr(iter->second);
   }
   
-  std::vector<string> generic_type::functions(bool c, bool inherited) const
+  std::vector<string> generic_type::functions(bool constOnly, bool inherited) const
   {
     std::vector<string> names;
 

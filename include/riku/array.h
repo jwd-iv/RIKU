@@ -125,7 +125,6 @@ namespace riku
 
     virtual typeinfo meta() const;
 
-  protected:
     std::vector<variant> vec;
   };
 }
