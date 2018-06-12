@@ -48,6 +48,7 @@ namespace riku
     template<typename... T> inline variant operator()(char const* f, T&&... args) const;
 
     virtual typeinfo meta() const;
+    virtual variant_type const& internal() const;
 
   /*protected:
     virtual void* clone(void* mem = NULL)
@@ -165,6 +166,7 @@ namespace riku
     virtual bool operator==(variant_type const& rhs) const;
 
     virtual typeinfo meta() const;
+    virtual variant_type const& internal() const;
 
   private:
     union {

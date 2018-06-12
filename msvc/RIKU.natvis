@@ -111,7 +111,7 @@
   </Type>
 
   <Type Name="riku::ptr">
-    <DisplayString Condition="(contains != 0)">ptr {d.ptr} {((primitive_type*)contains)->n}</DisplayString>
+    <DisplayString Condition="(contains != 0)">ptr {d.ptr} {((primitive_type*)contains)->n}*</DisplayString>
     <DisplayString>ptr (empty)</DisplayString>
     <Expand>
       <Item Condition="contains != 0" Name="Type">*contains</Item>

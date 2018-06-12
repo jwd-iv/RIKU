@@ -141,6 +141,11 @@ namespace riku
   {
     return NULL;
   }
+
+  variant_type const & variant_type::internal() const
+  {
+    return *this;
+  }
 }
 
 //ptr
@@ -528,5 +533,10 @@ namespace riku
   typeinfo variant::meta() const
   {
     return riku::get<variant>();
+  }
+
+  variant_type const& variant::internal() const
+  {
+    return empty() ? *this : *pimpl();
   }
 };
