@@ -90,8 +90,12 @@ namespace riku
 #include "riku\mem\factory.h"
 
 #include "riku\type.h"
-#include "riku\type\property.h"
+#include "riku\type\pointer.h"
+#include "riku\type\primitive.h"
+#include "riku\type\generic.h"
+#include "riku\type\template.h"
 
+#include "riku\type\property.h"
 #include "riku\type\function.h"
 
 #include "riku\library.h"
