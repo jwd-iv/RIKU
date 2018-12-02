@@ -28,6 +28,8 @@ ANY THEORY OF LIABILITY, WHETHER IN ANY CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#pragma once
+
 #include <string>
 #include <vector>
 #include <unordered_map>
@@ -76,13 +78,19 @@ namespace riku
 #include "riku\util\macros.h"
 #include "riku\util\metaprog.hpp"
 
+#include "riku\variant\variant_type.h"
+#include "riku\variant\ptr.h"
+#include "riku\variant\val.h"
+
 #include "riku\variant.h"
+#include "riku\variant\var.h"
+#include "riku\variant\array.h"
+#include "riku\variant\map.h"
+
 #include "riku\mem\factory.h"
 
 #include "riku\type.h"
 #include "riku\type\property.h"
-
-#include "riku\variant\array.h"
 
 #include "riku\type\function.h"
 
@@ -91,10 +99,14 @@ namespace riku
 #include "riku\util\registrar.hpp"
 
 #include "riku\variant\variant_inl.hpp"
+#include "riku\variant\ptr_inl.hpp"
+#include "riku\variant\val_inl.hpp"
+#include "riku\variant\var_inl.hpp"
 
 #include "riku\mem\factory_inl.hpp"
 
 #include "riku\variant\array_inl.hpp"
+#include "riku\variant\map_inl.hpp"
 
 #include "riku\type\function_inl.hpp"
 

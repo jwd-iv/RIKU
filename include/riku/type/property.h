@@ -1,3 +1,5 @@
+#pragma once
+
 namespace riku
 {
   //! The interface for inspecting/modifying data contained within a type.

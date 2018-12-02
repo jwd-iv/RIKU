@@ -1,3 +1,5 @@
+#pragma once
+
 #define PASTE(_, __) _##__
 #define NGINTERNAL(_) PASTE(GENERATED_NAME_, _)
 #define GENERATE_NAME() NGINTERNAL(__COUNTER__)

@@ -1,3 +1,5 @@
+#pragma once
+
 namespace riku
 {
   //! Additional interface for variants that contain a series of objects

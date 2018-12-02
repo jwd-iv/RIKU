@@ -1,3 +1,5 @@
+#pragma once
+
 namespace riku
 {
   //! Interface for retrieving information about a given data type.
