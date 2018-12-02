@@ -72,22 +72,31 @@ namespace riku
 }
 
 #include "riku\config.h"
-#include "riku\macros.h"
-#include "riku\metaprog.hpp"
+
+#include "riku\util\macros.h"
+#include "riku\util\metaprog.hpp"
 
 #include "riku\variant.h"
-#include "riku\factory.h"
+#include "riku\mem\factory.h"
+
 #include "riku\type.h"
-#include "riku\property.h"
-#include "riku\array.h"
-#include "riku\function.h"
+#include "riku\type\property.h"
+
+#include "riku\variant\array.h"
+
+#include "riku\type\function.h"
+
 #include "riku\library.h"
 
-#include "riku\registrar.hpp"
-#include "riku\variant_inl.hpp"
-#include "riku\factory_inl.hpp"
-#include "riku\array_inl.hpp"
-#include "riku\function_inl.hpp"
+#include "riku\util\registrar.hpp"
+
+#include "riku\variant\variant_inl.hpp"
+
+#include "riku\mem\factory_inl.hpp"
+
+#include "riku\variant\array_inl.hpp"
+
+#include "riku\type\function_inl.hpp"
 
 namespace rk = riku;
 
