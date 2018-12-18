@@ -3,14 +3,39 @@
 // map_var implementation
 namespace riku
 {
-  bool map_var::assign(variant_type const & rhs)
+  typeinfo map_var::type() const
   {
-    return false;
+    return meta();
   }
 
-  bool map_var::assignto(variant_type & rhs) const
+  void* map_var::data()
   {
-    return false;
+    return this;
+  }
+
+  void const* map_var::data() const
+  {
+    return this;
+  }
+
+  bool map_var::assign(variant_type const & rhs)
+  {
+    bool anything = false;
+
+    for (auto const& name : rhs.properties())
+      anything |= property(name).assign(rhs.property(name));
+
+    return anything;
+  }
+
+  bool map_var::modify(variant_type & rhs) const
+  {
+    bool anything = false;
+
+    for (auto const& name : properties())
+      anything |= property(name).modify(rhs.property(name));
+
+    return anything;
   }
   
   var<riku::function> map_var::function(string n)
@@ -25,12 +50,22 @@ namespace riku
   
   variant map_var::invoke(string func, riku::array & args)
   {
-    return variant();
+    map ret;
+
+    for (auto const& prop : properties())
+      ret.contents[prop] = property(prop).invoke(func, args);
+
+    return variant(ret);
   }
   
   variant map_var::invoke(string func, riku::array & args) const
   {
-    return variant();
+    map ret;
+
+    for (auto const& prop : properties())
+      ret.contents[prop] = property(prop).invoke(func, args);
+
+    return variant(ret);
   }
 
   typeinfo map_var::meta() const
@@ -40,17 +75,32 @@ namespace riku
   
   variant map::property(string n)
   {
-    return variant();
+    auto find = contents.find(n);
+
+    if (find != contents.end())
+      return find->second;
+
+    return contents[n];
   }
   
   variant map::property(string n) const
   {
+    auto find = contents.find(n);
+
+    if (find != contents.end())
+      return ptr(find->second.type(), find->second.data());
+
     return variant();
   }
   
   std::vector<string> map::properties() const
   {
-    return std::vector<string>();
+    std::vector<string> ret;
+
+    for (auto const& pair : contents)
+      ret.push_back(pair.first);
+
+    return ret;
   }
 
   typeinfo map::meta() const

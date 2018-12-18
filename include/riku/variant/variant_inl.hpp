@@ -46,7 +46,7 @@ namespace riku
 
   template<typename T> inline void variant_type::operator>>(T& rhs) const
   {
-    assignto(ptr(rhs));
+    modify(ptr(rhs));
   }
 
   template<typename... T> inline variant variant_type::operator()(char const* f, T&&... args)

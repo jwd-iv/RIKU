@@ -102,11 +102,11 @@ namespace riku
     return pimpl()->assign(rhs);
   }
 
-  bool variant::assignto(variant_type& rhs) const
+  bool variant::modify(variant_type& rhs) const
   {
     if (pimpl() == NULL)
       return false;
-    return pimpl()->assignto(rhs);
+    return pimpl()->modify(rhs);
   }
 
   variant variant::property(string n)

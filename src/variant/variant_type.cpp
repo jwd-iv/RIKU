@@ -36,7 +36,7 @@ namespace riku
       return false;
   }
 
-  bool variant_type::assignto(variant_type& rhs) const
+  bool variant_type::modify(variant_type& rhs) const
   {
     return rhs.assign(*this);
   }

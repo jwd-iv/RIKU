@@ -11,7 +11,7 @@ namespace riku
     virtual void const* data() const = 0;
 
     virtual bool assign(variant_type const& rhs);
-    virtual bool assignto(variant_type& rhs) const;
+    virtual bool modify(variant_type& rhs) const;
 
     virtual variant property(string n);
     virtual variant property(string n) const;
