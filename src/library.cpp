@@ -107,6 +107,11 @@ rkType(riku::array_var::iterator,       rkParent(variant_type) rkDefaultFactory)
 rkType(riku::array_var::const_iterator, rkParent(variant_type) rkDefaultFactory)
 rkType(riku::array,                     rkParent(array_var) rkDefaultFactory)
 
+rkType(riku::map_var,                 rkParent(variant_type))
+//rkType(riku::map_var::iterator,       rkParent(variant_type) rkDefaultFactory)
+//rkType(riku::map_var::const_iterator, rkParent(variant_type) rkDefaultFactory)
+rkType(riku::map,                     rkParent(map_var) rkDefaultFactory)
+
 rkType(riku::property, )
 rkType(riku::member,  rkParent(property) rkDefaultFactory)
 rkType(riku::get_set, rkParent(property))

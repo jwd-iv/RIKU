@@ -166,6 +166,21 @@ namespace riku
     return empty() ? NULL : pimpl()->as_array();
   }
 
+  bool variant::is_map() const
+  {
+    return empty() ? false : pimpl()->is_map();
+  }
+
+  map_var* variant::as_map()
+  {
+    return empty() ? NULL : pimpl()->as_map();
+  }
+
+  map_var const* variant::as_map() const
+  {
+    return empty() ? NULL : pimpl()->as_map();
+  }
+
   variant variant::invoke(string func, riku::array& args)
   {
     if (empty())

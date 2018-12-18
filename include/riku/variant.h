@@ -35,6 +35,9 @@ namespace riku
     virtual bool is_array() const;
     virtual array_var* as_array();
     virtual array_var const* as_array() const;
+    virtual bool is_map() const;
+    virtual map_var* as_map();
+    virtual map_var const* as_map() const;
 
     virtual bool operator==(variant_type const& rhs) const;
 

@@ -129,20 +129,35 @@ namespace riku
 
   array_var* variant_type::as_array()
   {
-    return NULL;
+    return dynamic_cast<array_var*>(this);
   }
 
   array_var const* variant_type::as_array() const
   {
-    return NULL;
+    return dynamic_cast<array_var const*>(this);
+  }
+
+  bool variant_type::is_map() const
+  {
+    return meta()->has_parent(riku::get<map_var>());
+  }
+
+  map_var* variant_type::as_map()
+  {
+    return dynamic_cast<map_var*>(this);
+  }
+
+  map_var const* variant_type::as_map() const
+  {
+    return dynamic_cast<map_var const*>(this);
   }
 
   typeinfo variant_type::meta() const
   {
-    return NULL;
+    return get<variant_type>();
   }
 
-  variant_type const & variant_type::internal() const
+  variant_type const& variant_type::internal() const
   {
     return *this;
   }
